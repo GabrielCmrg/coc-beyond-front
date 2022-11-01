@@ -1,0 +1,16 @@
+import { createGlobalStyle } from 'styled-components';
+
+export default createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    --green: #007500;
+    --gold: #D1B000;
+  }
+  body {
+    background-color: #d0d0d0;
+  }
+  
+  #root {
+    min-height: 100vh;
+  }
+`;
