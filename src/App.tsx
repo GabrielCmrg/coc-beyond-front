@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import './assets/reset.css';
+
 import SignupScreen from './pages/SignupScreen';
 
 function App() {
