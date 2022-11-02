@@ -1,5 +1,7 @@
+import Header from '../components/Header';
+
 function HomeScreen() {
-  return <div>Home screen</div>;
+  return <Header />;
 }
 
 export default HomeScreen;
