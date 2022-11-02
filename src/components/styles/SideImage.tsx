@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export default styled.img`
   object-fit: cover;
-  width: 40%;
+  height: 100vh;
 
-  @media (max-width: 1180px) {
+  @media (max-width: 980px) {
     display: none;
   }
 `;
