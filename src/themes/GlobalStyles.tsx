@@ -5,9 +5,12 @@ export default createGlobalStyle`
     box-sizing: border-box;
     --green: #007500;
     --gold: #D1B000;
+    --bg-color: #d0d0d0;
+    --gray: #909090;
   }
   body {
-    background-color: #d0d0d0;
+    background-color: var(--bg-color);
+    font-family: 'Roboto', sans-serif;
   }
   
   #root {
