@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
-export default styled.div`
+type Props = {
+  color: string;
+  fontSize: number;
+};
+
+export default styled.div<Props>`
   font-family: 'Special Elite', cursive;
-  font-size: 76px;
+  font-size: ${(props) => props.fontSize}px;
 
   div:first-child {
     color: var(--green);
