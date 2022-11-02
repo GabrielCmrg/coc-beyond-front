@@ -1,12 +1,20 @@
 import LogoStyle from './LogoStyle';
 
-function Logo() {
+type LogoProps = {
+  color: string;
+};
+
+function Logo({ color }: LogoProps) {
   return (
-    <LogoStyle>
+    <LogoStyle color={color}>
       <div>CoC</div>
       <div>Beyond</div>
     </LogoStyle>
   );
 }
+
+Logo.defaultProps = {
+  color: 'black',
+};
 
 export default Logo;
