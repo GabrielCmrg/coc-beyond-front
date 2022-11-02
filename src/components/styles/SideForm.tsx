@@ -6,4 +6,5 @@ export default styled.div`
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+  padding: 100px;
 `;
