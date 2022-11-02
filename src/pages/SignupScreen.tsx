@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import PageContainer from '../components/styles/PageContainer';
 import SideImage from '../components/styles/SideImage';
@@ -6,16 +6,31 @@ import SideForm from '../components/styles/SideForm';
 import Form from '../components/styles/Form';
 import Logo from '../components/Logo';
 
+import useSignup from '../hooks/api/useSignup';
+
 import image from '../assets/cthulhu_wants_you.jpeg';
 
 function SignupScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const { user, signupError, signup } = useSignup();
 
-  const handleSignup = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    await signup(email, password);
   };
+
+  useEffect(() => {
+    if (user) {
+      alert('Account created!');
+    }
+
+    if (signupError) {
+      alert(signupError);
+    }
+  }, [user, signupError]);
 
   return (
     <PageContainer>
