@@ -45,6 +45,7 @@ function SignupScreen() {
             type="text"
             name="email"
             id="email"
+            data-cy="email"
             placeholder="E-mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -54,6 +55,7 @@ function SignupScreen() {
             type="password"
             name="password"
             id="password"
+            data-cy="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -63,12 +65,15 @@ function SignupScreen() {
             type="password"
             name="confirm-password"
             id="confirm-password"
+            data-cy="confirm-password"
             placeholder="Confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-          <button type="submit">Join us!</button>
+          <button type="submit" data-cy="create-account-button">
+            Join us!
+          </button>
         </Form>
       </SideForm>
     </PageContainer>
