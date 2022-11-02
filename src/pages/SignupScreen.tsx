@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import PageContainer from '../components/styles/PageContainer';
 import SideImage from '../components/styles/SideImage';
@@ -15,6 +16,7 @@ function SignupScreen() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const { user, signupError, signup } = useSignup();
+  const navigate = useNavigate();
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,6 +27,7 @@ function SignupScreen() {
   useEffect(() => {
     if (user) {
       alert('Account created!');
+      navigate('/');
     }
 
     if (signupError) {
