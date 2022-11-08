@@ -127,3 +127,10 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+* {
+  box-sizing: border-box;
+  --green: #007500;
+  --gold: #d1b000;
+  --bg-color: #d0d0d0;
+  --gray: #909090;
+}
