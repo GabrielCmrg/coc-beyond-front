@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 
-import PageContainer from '../components/styles/PageContainer';
-import SideImage from '../components/styles/SideImage';
 import SideForm from '../components/styles/SideForm';
 import Form from '../components/styles/Form';
 import Logo from '../components/Logo';
@@ -17,6 +16,8 @@ function SignupScreen() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const { user, signupError, signup } = useSignup();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const lessThanMedium = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,8 +37,14 @@ function SignupScreen() {
   }, [user, signupError]);
 
   return (
-    <PageContainer>
-      <SideImage src={image} alt="Cthulhu wants YOU" />
+    <Box display="flex" height="100%">
+      <Box
+        component="img"
+        src={image}
+        alt="Cthulhu wants YOU"
+        height="100%"
+        hidden={lessThanMedium}
+      />
       <SideForm>
         <Logo />
         <Form onSubmit={handleSignup}>
@@ -76,7 +83,7 @@ function SignupScreen() {
           </button>
         </Form>
       </SideForm>
-    </PageContainer>
+    </Box>
   );
 }
 
