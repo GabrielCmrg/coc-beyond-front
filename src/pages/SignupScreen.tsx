@@ -22,7 +22,7 @@ function SignupScreen() {
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await signup(email, password);
+    await signup(email, password, confirmPassword);
   };
 
   useEffect(() => {
