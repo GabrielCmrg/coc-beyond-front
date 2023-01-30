@@ -15,6 +15,7 @@ export default function useAsync<
   const act = async (...args: ParamsTypes) => {
     setLoading(true);
     setError(null);
+    setData(null);
 
     try {
       const data = await handler(...args);
