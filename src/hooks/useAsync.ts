@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export default function useAsync<
   AsyncReturnType,
@@ -12,21 +12,24 @@ export default function useAsync<
   const [loading, setLoading] = useState(immediate);
   const [error, setError] = useState<unknown>(null);
 
-  const act = async (...args: ParamsTypes) => {
-    setLoading(true);
-    setError(null);
-    setData(null);
+  const act = useCallback(
+    async (...args: ParamsTypes) => {
+      setLoading(true);
+      setError(null);
+      setData(null);
 
-    try {
-      const data = await handler(...args);
-      setData(data);
-      setLoading(false);
-      return data;
-    } catch (err: unknown) {
-      setError(err);
-      setLoading(false);
-    }
-  };
+      try {
+        const returnedData = await handler(...args);
+        setData(returnedData);
+        setLoading(false);
+        return returnedData;
+      } catch (err: unknown) {
+        setError(err);
+        setLoading(false);
+      }
+    },
+    [setData, setLoading, setError, handler],
+  );
 
   useEffect(() => {
     // params cant ever be undefined if immediate is true
