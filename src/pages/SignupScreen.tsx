@@ -41,7 +41,6 @@ function SignupScreen() {
         component="img"
         src={image}
         alt="Cthulhu wants YOU"
-        height="100%"
         hidden={lessThanMedium}
       />
       <Container>
