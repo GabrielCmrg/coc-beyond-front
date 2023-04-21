@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Form from '../components/styles/Form';
-import Logo from '../components/Logo';
-import Layout from '../layouts/SideImageLayout';
+import Form from 'src/components/styles/Form';
+import Logo from 'src/components/Logo';
+import Layout from 'src/layouts/SideImageLayout';
 
-import useSignup from '../hooks/api/useSignup';
+import useSignup from 'src/hooks/api/useSignup';
 
-import image from '../assets/cthulhu_wants_you.jpeg';
+import image from 'src/assets/cthulhu_wants_you.jpeg';
 
 function SignupScreen() {
   const [email, setEmail] = useState('');
