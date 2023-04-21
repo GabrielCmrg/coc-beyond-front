@@ -18,7 +18,6 @@ export default function useAsync<AsyncReturnType>(
       const returnedData = await callback();
       setData(returnedData);
       setLoading(false);
-      return returnedData;
     } catch (err: unknown) {
       setError(err);
       setLoading(false);

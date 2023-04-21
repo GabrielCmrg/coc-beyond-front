@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Form from 'src/components/styles/Form';
 import Logo from 'src/components/Logo';
+
+import { UserCreationPost } from 'src/types/userTypes';
+
 import Layout from 'src/layouts/SideImageLayout';
 
 import useSignup from 'src/hooks/api/useSignup';
@@ -10,32 +13,34 @@ import useSignup from 'src/hooks/api/useSignup';
 import image from 'src/assets/cthulhu_wants_you.jpeg';
 
 function SignupScreen() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const { user, signupError, signup } = useSignup({
-    email,
-    password,
-    confirmPassword,
+  const [userPost, setUserPost] = useState<UserCreationPost>({
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserPost((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const { user, signupError, signup } = useSignup(userPost);
   const navigate = useNavigate();
+
+  if (user) {
+    alert('Account created!');
+    navigate('/');
+  }
+
+  if (signupError) {
+    alert(signupError);
+  }
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     await signup();
   };
-
-  useEffect(() => {
-    if (user) {
-      alert('Account created!');
-      navigate('/');
-    }
-
-    if (signupError) {
-      alert(signupError);
-    }
-  }, [user, signupError]);
 
   return (
     <Layout image={image} alt="Cthulhu wants YOU">
@@ -47,8 +52,8 @@ function SignupScreen() {
           id="email"
           data-cy="email"
           placeholder="E-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={userPost.email}
+          onChange={handleInputChange}
           required
         />
         <input
@@ -57,18 +62,18 @@ function SignupScreen() {
           id="password"
           data-cy="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={userPost.password}
+          onChange={handleInputChange}
           required
         />
         <input
           type="password"
-          name="confirm-password"
+          name="confirmPassword"
           id="confirm-password"
           data-cy="confirm-password"
           placeholder="Confirm password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          value={userPost.confirmPassword}
+          onChange={handleInputChange}
           required
         />
         <button type="submit" data-cy="create-account-button">
