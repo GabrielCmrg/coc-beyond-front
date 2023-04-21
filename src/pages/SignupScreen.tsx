@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Container, useMediaQuery, useTheme } from '@mui/material';
 
 import Form from '../components/styles/Form';
 import Logo from '../components/Logo';
+import Layout from '../layouts/SideImageLayout';
 
 import useSignup from '../hooks/api/useSignup';
 
@@ -15,8 +15,6 @@ function SignupScreen() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const { user, signupError, signup } = useSignup();
   const navigate = useNavigate();
-  const theme = useTheme();
-  const lessThanMedium = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,60 +34,44 @@ function SignupScreen() {
   }, [user, signupError]);
 
   return (
-    <Box display="flex" height="100%">
-      <Box
-        component="img"
-        src={image}
-        alt="Cthulhu wants YOU"
-        hidden={lessThanMedium}
-      />
-      <Container>
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          height="100%"
-        >
-          <Logo />
-          <Form onSubmit={handleSignup}>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              data-cy="email"
-              placeholder="E-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              data-cy="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              name="confirm-password"
-              id="confirm-password"
-              data-cy="confirm-password"
-              placeholder="Confirm password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-            <button type="submit" data-cy="create-account-button">
-              Join us!
-            </button>
-          </Form>
-        </Box>
-      </Container>
-    </Box>
+    <Layout image={image} alt="Cthulhu wants YOU">
+      <Logo />
+      <Form onSubmit={handleSignup}>
+        <input
+          type="text"
+          name="email"
+          id="email"
+          data-cy="email"
+          placeholder="E-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          data-cy="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          name="confirm-password"
+          id="confirm-password"
+          data-cy="confirm-password"
+          placeholder="Confirm password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
+        <button type="submit" data-cy="create-account-button">
+          Join us!
+        </button>
+      </Form>
+    </Layout>
   );
 }
 
