@@ -1,16 +1,16 @@
-import useAsync from '../useAsync';
+import useAsync from 'src/hooks/useAsync';
 
-import * as userApi from '../../services/userApi';
+import * as userApi from 'src/services/userApi';
 
-import { userView, signupArguments } from '../../types/userTypes';
+import { UserCreationPost, UserView } from 'src/types/userTypes';
 
-export default function useSignup() {
+export default function useSignup(state: UserCreationPost) {
   const {
     data: user,
     loading: signupLoading,
     error: signupError,
-    act: signup,
-  } = useAsync<userView, signupArguments>(userApi.signup);
+    execute: signup,
+  } = useAsync<UserView>(() => userApi.signup(state));
 
   return {
     user,

@@ -13,13 +13,17 @@ function SignupScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const { user, signupError, signup } = useSignup();
+  const { user, signupError, signup } = useSignup({
+    email,
+    password,
+    confirmPassword,
+  });
   const navigate = useNavigate();
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await signup(email, password, confirmPassword);
+    await signup();
   };
 
   useEffect(() => {

@@ -1,2 +1,10 @@
-export type userView = { id: number; email: string };
-export type signupArguments = [string, string, string];
+export interface UserView {
+  id: number;
+  email: string;
+}
+
+export interface UserCreationPost {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
