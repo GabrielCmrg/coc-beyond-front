@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Form from 'src/components/styles/Form';
+import { Form } from '@unform/web';
 import Logo from 'src/components/Logo';
 
 import { UserCreationPost } from 'src/types/userTypes';
@@ -36,16 +36,16 @@ function SignupScreen() {
     alert(signupError);
   }
 
-  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const formRef = useRef(null);
 
+  const handleSignup = async () => {
     await signup();
   };
 
   return (
     <Layout image={image} alt="Cthulhu wants YOU">
       <Logo />
-      <Form onSubmit={handleSignup}>
+      <Form ref={formRef} onSubmit={handleSignup}>
         <input
           type="text"
           name="email"
